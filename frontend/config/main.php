@@ -49,6 +49,9 @@ return [
         'user' => [
             'class' => 'frontend\modules\user\Module',
         ],
+        'library' => [
+            'class' => 'frontend\modules\library\Module',
+        ],
     ],
     'params' => $params,
 ];

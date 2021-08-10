@@ -16,92 +16,84 @@ use yii\web\JsExpression;
 use yii\web\Request;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
-//use yii\grid\GridView;
 /* @var $this yii\web\View */
-/* @var $searchModel frontend\modules\user\models\User\UserSearch */
+/* @var $searchModel frontend\modules\library\models\Author\AuthorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Users');
+$this->title = Yii::t('app', 'Authors');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="author-index">
+    <?php
+
+
+
+    $gridColumns = [
+
+        [
+
+            'class' => 'kartik\grid\SerialColumn',
+
+            'width' => '20px',
+
+        ],
+
+
+
+        [
+
+            'class' => 'kartik\grid\ExpandRowColumn',
+
+            'width' => '50px',
+
+            'value' => function ($model, $key, $index, $column) {
+
+                return kartik\grid\GridView::ROW_COLLAPSED;
+            },
+
+            'detailUrl' => Url::to(['/library/author/book-detail']),
+
+            'headerOptions' => ['class' => 'kartik-sheet-style']
+
+
+
+        ],
+
+        [
+
+            'attribute' => 'name',
+
+            'vAlign' => 'middle',
+
+            'hAlign' => 'center'
+
+
+
+        ],
+
+        [
+
+            'class' => 'kartik\grid\ActionColumn',
+
+
+
+        ],
+
+    ];
+
+
+
+    ?>
+
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Author'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?php
-
-$gridColumns = [
-
-  [
-
-      'class'=>'kartik\grid\SerialColumn',
-
-      'contentOptions'=>['class'=>'kartik-sheet-style'],
-
-      'width'=>'36px',
-
-      'header'=>'',
-
-      'headerOptions'=>['class'=>'kartik-sheet-style']
-
-  ],
-
-  [
-
-      'attribute' => 'username', 
-
-      'vAlign' => 'middle',
-
-      'hAlign' => 'center'
-
-     
-
-  ],
-
-  [
-
-      'attribute' => 'email', 
-
-      'vAlign' => 'middle',
-
-      'hAlign' => 'center'
-
-     
-
-  ],
-
-  [
-
-      'attribute' => 'status', 
-
-      'vAlign' => 'middle',
-
-      'hAlign' => 'center'
-
-     
-
-  ],
-
-  [
-
-      'class' => 'kartik\grid\ActionColumn',
-
-    
-
-  ],
-
-];
-
-
-
-?>
-
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
 <?= GridView::widget([
 
@@ -140,5 +132,6 @@ $gridColumns = [
 ]);
 
 ?>
+
 
 </div>

@@ -13,10 +13,8 @@ return [
     'modules' => [
 
         'gridview' =>  [
-     
-             'class' => '\kartik\grid\Module'
-     
-         ]
-     
-     ]
+            'class' => '\kartik\grid\Module',
+            // your other grid module settings
+        ],
+    ]
 ];
