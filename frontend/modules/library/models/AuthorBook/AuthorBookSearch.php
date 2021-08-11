@@ -11,6 +11,8 @@ use frontend\modules\library\models\AuthorBook\AuthorBook;
  */
 class AuthorBookSearch extends AuthorBook
 {
+    public $authorName;
+    public $bookName;
     /**
      * {@inheritdoc}
      */
@@ -18,6 +20,7 @@ class AuthorBookSearch extends AuthorBook
     {
         return [
             [['id', 'author_id', 'book_id'], 'integer'],
+            [['authorName', 'bookName'], 'safe']
         ];
     }
 
@@ -54,13 +57,44 @@ class AuthorBookSearch extends AuthorBook
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->innerJoin('book', 'book.id = author_book.book_id');
+        $query->innerJoin('author', 'author.id = author_book.author_id');
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'author_id' => $this->author_id,
-            'book_id' => $this->book_id,
+        $dataProvider->setSort([
+            'defaultOrder' => [
+                'authorName' => SORT_ASC
+            ],
+            'attributes' => [
+                'author_id',
+                'book_id',
+                'authorName' => [
+                    'asc' => ['author.name' => SORT_ASC],
+                    'desc' => ['author.name' => SORT_DESC],
+                ],
+                'bookName' => [
+                    'asc' => ['book.name' => SORT_ASC],
+                    'desc' => ['book.name' => SORT_DESC],
+                ],
+
+
+
+            ]
         ]);
+
+        $query->andFilterWhere([
+            'author_book.id' => $this->id,
+            'author_book.author_id' => $this->author_id,
+            'author_book.book_id' => $this->book_id,
+        ]);
+
+
+        $query->andFilterWhere([
+            'LIKE', 'author.name', $this->authorName,
+        ]);
+        $query->andFilterWhere([
+            'LIKE', 'book.name', $this->bookName,
+        ]);
+
 
         return $dataProvider;
     }

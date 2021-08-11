@@ -7,7 +7,7 @@ use frontend\modules\library\models\Author\Author;
 use frontend\modules\library\models\Book\Book;
 /**
  * This is the model class for table "author_book".
- *
+ *   
  * @property int $id
  * @property int|null $author_id
  * @property int|null $book_id

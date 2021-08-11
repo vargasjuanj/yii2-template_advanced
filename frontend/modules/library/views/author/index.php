@@ -95,43 +95,43 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
     ?>
 
-<?= GridView::widget([
+    <?= GridView::widget([
 
-'dataProvider'=> $dataProvider,
+        'dataProvider' => $dataProvider,
 
-'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
 
-'columns' => $gridColumns,
+        'columns' => $gridColumns,
 
-'responsive'=>true,
+        'responsive' => true,
 
-'hover'=>true,
+        'hover' => true,
 
-'toolbar'=>[
+        'toolbar' => [
 
-    '{export}',
+            '{export}',
 
-    '{toggleData}'
+            '{toggleData}'
 
-],
+        ],
 
-'panel' => [
+        'panel' => [
 
-    'heading'=>Yii::t('app', 'Users'),
+            'heading' => Yii::t('app', 'Users'),
 
-    'type'=>'info',
+            'type' => 'info',
 
-    'before'=>Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-danger']),
+            'before' => Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-danger']),
 
-    'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+            'after' => Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
 
-    'footer'=>false
+            'footer' => false
 
-],
+        ],
 
-]);
+    ]);
 
-?>
+    ?>
 
 
 </div>
