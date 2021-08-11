@@ -44,8 +44,8 @@ class AuthorBook extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'author_id' => Yii::t('app', 'Author ID'),
-            'book_id' => Yii::t('app', 'Book ID'),
+            'author_id' => Yii::t('app', 'Author'),
+            'book_id' => Yii::t('app', 'Book'),
         ];
     }
 
